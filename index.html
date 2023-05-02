@@ -1,0 +1,102 @@
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Añadir enlaces a JDownloader</title>
+  </head>
+  <style>
+   * {
+     margin: 0;
+     paddig: 0;
+   }
+
+   body {
+     text-align: center;
+     display: grid;
+     align-content: center;
+     justify-content: center;
+     min-height: 100vh;
+     background-color: #e5e5f7;
+     background-size: 20px 20px;
+     background-image:  repeating-linear-gradient(to right, #dedfe6, #dedfe6 1px, #e5e5f7 1px, #e5e5f7);
+   }
+
+   button {
+     appearance: button;
+     background-color: #499542;
+     border: solid transparent;
+     border-radius: 16px;
+     border-width: 0 0 4px;
+     box-sizing: border-box;
+     color: #FFFFFF;
+     cursor: pointer;
+     display: inline-block;
+     font-family: din-round,sans-serif;
+     font-size: 15px;
+     font-weight: 700;
+     letter-spacing: .8px;
+     line-height: 20px;
+     margin: 0;
+     outline: none;
+     overflow: visible;
+     padding: 13px 16px;
+     text-align: center;
+     text-transform: uppercase;
+     touch-action: manipulation;
+     transform: translateZ(0);
+     transition: filter .2s;
+     user-select: none;
+     -webkit-user-select: none;
+     vertical-align: middle;
+     white-space: nowrap;
+     width: 100%;
+   }
+
+   button:after {
+     background-clip: padding-box;
+     background-color: #2C3F48;
+     border: solid transparent;
+     border-radius: 16px;
+     border-width: 0 0 4px;
+     bottom: -4px;
+     content: "";
+     left: 0;
+     position: absolute;
+     right: 0;
+     top: 0;
+     z-index: -1;
+   }
+
+   button:main,
+   button:focus {
+     user-select: auto;
+   }
+
+   button:hover:not(:disabled) {
+     filter: brightness(1.1);
+     -webkit-filter: brightness(1.1);
+   }
+
+   button:disabled {
+     cursor: auto;
+   }
+
+   strong {
+     border: 3px solid #ae4242;
+     padding: 10px;
+     border-radius: 5px;
+   }
+  </style>
+  <body>
+    <script type="text/javascript">
+     fetch('http://127.0.0.1:9666/jdcheck.js')
+       .then(res => {
+         document.body.innerHTML = `<form method="post" target="hidden" class="jd" action="http://127.0.0.1:9666/flash/add"><INPUT TYPE="hidden" NAME=urls VALUE="${location.hash.substring(1)}">
+           <button>Añadir enlaces a jdownloader</button>
+         </form>`
+       })
+       .catch(err => {
+         document.body.innerHTML = '<strong>No se ha detectado que JDownloader esté activo. <br> Iniciar JDownloader y refresca esta página.</strong>'
+       })
+    </script>
+  </body>
+</html>
